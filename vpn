@@ -1,0 +1,62 @@
+#!/bin/bash
+# by: Hexsilent
+# Created: 24/12/2024
+validate_choice() {
+    [[ "$1" =~ ^[01]$ ]]
+}
+
+# ===== ANSI BANNER =====
+clear
+
+BLUE="\e[96m"   # Azul petróleo brilhante (bright cyan)
+RESET="\e[0m"
+
+echo -e "${BLUE}"
+cat << "EOF"
+██╗   ██╗██████╗ ███╗   ██╗
+██║   ██║██╔══██╗████╗  ██║
+██║   ██║██████╔╝██╔██╗ ██║
+██║   ██║██╔═══╝ ██║╚██╗██║
+╚██████╔╝██║     ██║ ╚████║
+ ╚═════╝ ╚═╝     ╚═╝  ╚═══╝
+
+      VPN CONNECT
+EOF
+echo -e "${RESET}"
+echo "User: $(whoami) | $(date)"
+
+while true; do
+    read -p $'THM ou HTB?\n [0] TryHackMe\n [1] HackTheBox:\n_ ' ctf_lab
+
+    if ! validate_choice "$ctf_lab"; then
+        echo "Opção inválida. Use 0 ou 1."
+        continue
+    fi
+
+    read -p $'EU ou EUA?\n [0] EU\n [1] EUA:\n_' wold
+
+    if ! validate_choice "$wold"; then
+        echo "Opção inválida. Use 0 ou 1."
+        continue
+    fi
+
+    if [[ "$ctf_lab" == "0" ]]; then
+        echo "[+] Connecting in TryHackMe"
+        if [[ "$wold" == "0" ]]; then
+            sudo openvpn ~/.vpn/config-eu.ovpn # Mude Isso
+        else
+            sudo openvpn ~/.vpn/config-eua.ovpn # Mude Isso
+        fi
+    else
+        echo "[+] Connecting in HackTheBox"
+        if [[ "$wold" == "0" ]]; then
+            sudo openvpn ~/.vpn/config-eu.ovpn # Mude Isso
+        else
+            sudo openvpn ~/.vpn/config-eua.ovpn # Mude Isso
+        fi
+    fi
+
+    break
+done
+
+     
