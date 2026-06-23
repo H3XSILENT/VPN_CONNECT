@@ -16,27 +16,15 @@ ao serviço utilizado.
 - `git`
 ## Configurando e instalando:   
 
-        git clone https://github.com/rv157244/writeups/sc_vpn.git
-
-        unzip sc_vpn.zip
-
-        cd sc_vpn
-
-Edite o Script Shell colocando o nome dos seus file .ovpn
-
-        chmod 110 vpn
-
-        sudo mv vpn /usr/local/bin/vpn
-
-        mkdir ~.vpn
-
-Feito isso é só mover os arquivos .ovpn para seu diretorio oculto (.vpn).
-
-        chmod 440 ~/.vpn
+```BASH
+git clone https://github.com/H3XSILENT/VPN_CONNECT.git
+cd VPN_CONNECT;chmod +x install.sh;
+./install.sh
+```
 
 Rode o script: 
 ```BASH
-vpn
+$ vpn
 ```
 ### Capturas de tela:
 
