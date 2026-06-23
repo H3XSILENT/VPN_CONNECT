@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
-chmod +x vpn;
-mv cp vpn $(echo $PATH | cut -d ':' -f 2 | cur -d ':' -f 1)/vpn
-echo "[OK]" 
-echo $?
+set -euo pipefail
+
+SCRIPT="vpn"
+TARGET="/usr/local/bin/$SCRIPT"
+
+if [[ ! -f "$SCRIPT" ]]; then
+    echo "Erro: arquivo '$SCRIPT' não encontrado."
+    exit 1
+fi
+
+chmod +x "$SCRIPT"
+
+sudo install -m 755 "$SCRIPT" "$TARGET"
+
+echo "Instalado com sucesso em $TARGET"
